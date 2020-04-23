@@ -67,7 +67,7 @@ public class UserAccount implements Serializable {
     @JsonIgnore
     private Set<Cooperative> members = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -203,7 +203,7 @@ public class UserAccount implements Serializable {
     public void setMembers(Set<Cooperative> cooperatives) {
         this.members = cooperatives;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

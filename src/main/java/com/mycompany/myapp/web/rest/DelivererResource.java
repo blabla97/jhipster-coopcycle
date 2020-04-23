@@ -112,7 +112,8 @@ public class DelivererResource {
     @DeleteMapping("/deliverers/{id}")
     public ResponseEntity<Void> deleteDeliverer(@PathVariable Long id) {
         log.debug("REST request to delete Deliverer : {}", id);
+
         delivererRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

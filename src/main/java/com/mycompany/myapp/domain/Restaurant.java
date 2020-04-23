@@ -46,10 +46,10 @@ public class Restaurant implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("restaurants")
+    @JsonIgnoreProperties(value = "restaurants", allowSetters = true)
     private RestaurantOwner restaurants;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -122,7 +122,7 @@ public class Restaurant implements Serializable {
     public void setRestaurants(RestaurantOwner restaurantOwner) {
         this.restaurants = restaurantOwner;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

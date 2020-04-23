@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link RestaurantResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class RestaurantResourceIT {
@@ -112,7 +111,6 @@ public class RestaurantResourceIT {
     @Transactional
     public void createRestaurant() throws Exception {
         int databaseSizeBeforeCreate = restaurantRepository.findAll().size();
-
         // Create the Restaurant
         restRestaurantMockMvc.perform(post("/api/restaurants")
             .contentType(MediaType.APPLICATION_JSON)
@@ -158,6 +156,7 @@ public class RestaurantResourceIT {
 
         // Create the Restaurant, which fails.
 
+
         restRestaurantMockMvc.perform(post("/api/restaurants")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(restaurant)))
@@ -175,6 +174,7 @@ public class RestaurantResourceIT {
         restaurant.setTel(null);
 
         // Create the Restaurant, which fails.
+
 
         restRestaurantMockMvc.perform(post("/api/restaurants")
             .contentType(MediaType.APPLICATION_JSON)
@@ -218,7 +218,6 @@ public class RestaurantResourceIT {
             .andExpect(jsonPath("$.tel").value(DEFAULT_TEL))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION));
     }
-
     @Test
     @Transactional
     public void getNonExistingRestaurant() throws Exception {
@@ -264,8 +263,6 @@ public class RestaurantResourceIT {
     @Transactional
     public void updateNonExistingRestaurant() throws Exception {
         int databaseSizeBeforeUpdate = restaurantRepository.findAll().size();
-
-        // Create the Restaurant
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRestaurantMockMvc.perform(put("/api/restaurants")

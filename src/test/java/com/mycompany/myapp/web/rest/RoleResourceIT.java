@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link RoleResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class RoleResourceIT {
@@ -113,7 +112,6 @@ public class RoleResourceIT {
     @Transactional
     public void createRole() throws Exception {
         int databaseSizeBeforeCreate = roleRepository.findAll().size();
-
         // Create the Role
         restRoleMockMvc.perform(post("/api/roles")
             .contentType(MediaType.APPLICATION_JSON)
@@ -171,7 +169,6 @@ public class RoleResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(role.getId().intValue()));
     }
-
     @Test
     @Transactional
     public void getNonExistingRole() throws Exception {
@@ -208,8 +205,6 @@ public class RoleResourceIT {
     @Transactional
     public void updateNonExistingRole() throws Exception {
         int databaseSizeBeforeUpdate = roleRepository.findAll().size();
-
-        // Create the Role
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRoleMockMvc.perform(put("/api/roles")

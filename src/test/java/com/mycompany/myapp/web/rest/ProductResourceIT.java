@@ -143,7 +143,6 @@ public class ProductResourceIT {
     @Transactional
     public void createProduct() throws Exception {
         int databaseSizeBeforeCreate = productRepository.findAll().size();
-
         // Create the Product
         restProductMockMvc.perform(post("/api/products")
             .contentType(MediaType.APPLICATION_JSON)
@@ -189,6 +188,7 @@ public class ProductResourceIT {
 
         // Create the Product, which fails.
 
+
         restProductMockMvc.perform(post("/api/products")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(product)))
@@ -207,6 +207,7 @@ public class ProductResourceIT {
 
         // Create the Product, which fails.
 
+
         restProductMockMvc.perform(post("/api/products")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(product)))
@@ -224,6 +225,7 @@ public class ProductResourceIT {
         product.setDisponibility(null);
 
         // Create the Product, which fails.
+
 
         restProductMockMvc.perform(post("/api/products")
             .contentType(MediaType.APPLICATION_JSON)
@@ -253,7 +255,6 @@ public class ProductResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllProductsWithEagerRelationshipsIsEnabled() throws Exception {
-        ProductResource productResource = new ProductResource(productRepositoryMock);
         when(productRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restProductMockMvc.perform(get("/api/products?eagerload=true"))
@@ -264,7 +265,6 @@ public class ProductResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllProductsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        ProductResource productResource = new ProductResource(productRepositoryMock);
         when(productRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restProductMockMvc.perform(get("/api/products?eagerload=true"))
@@ -289,7 +289,6 @@ public class ProductResourceIT {
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.disponibility").value(DEFAULT_DISPONIBILITY.booleanValue()));
     }
-
     @Test
     @Transactional
     public void getNonExistingProduct() throws Exception {
@@ -335,8 +334,6 @@ public class ProductResourceIT {
     @Transactional
     public void updateNonExistingProduct() throws Exception {
         int databaseSizeBeforeUpdate = productRepository.findAll().size();
-
-        // Create the Product
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restProductMockMvc.perform(put("/api/products")

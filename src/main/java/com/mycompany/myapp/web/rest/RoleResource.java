@@ -113,7 +113,8 @@ public class RoleResource {
     @DeleteMapping("/roles/{id}")
     public ResponseEntity<Void> deleteRole(@PathVariable Long id) {
         log.debug("REST request to delete Role : {}", id);
+
         roleRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

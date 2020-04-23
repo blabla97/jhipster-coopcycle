@@ -26,7 +26,6 @@ import com.mycompany.myapp.domain.enumeration.PaymentMethod;
  * Integration tests for the {@link PaymentResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class PaymentResourceIT {
@@ -77,7 +76,6 @@ public class PaymentResourceIT {
     @Transactional
     public void createPayment() throws Exception {
         int databaseSizeBeforeCreate = paymentRepository.findAll().size();
-
         // Create the Payment
         restPaymentMockMvc.perform(post("/api/payments")
             .contentType(MediaType.APPLICATION_JSON)
@@ -138,7 +136,6 @@ public class PaymentResourceIT {
             .andExpect(jsonPath("$.id").value(payment.getId().intValue()))
             .andExpect(jsonPath("$.mode").value(DEFAULT_MODE.toString()));
     }
-
     @Test
     @Transactional
     public void getNonExistingPayment() throws Exception {
@@ -178,8 +175,6 @@ public class PaymentResourceIT {
     @Transactional
     public void updateNonExistingPayment() throws Exception {
         int databaseSizeBeforeUpdate = paymentRepository.findAll().size();
-
-        // Create the Payment
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restPaymentMockMvc.perform(put("/api/payments")

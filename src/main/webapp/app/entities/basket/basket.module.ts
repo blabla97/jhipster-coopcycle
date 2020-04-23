@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { CoopcycleSharedModule } from 'app/shared/shared.module';
 import { BasketComponent } from './basket.component';
@@ -9,7 +10,7 @@ import { BasketDeleteDialogComponent } from './basket-delete-dialog.component';
 import { basketRoute } from './basket.route';
 
 @NgModule({
-  imports: [CoopcycleSharedModule, RouterModule.forChild(basketRoute)],
+  imports: [CoopcycleSharedModule, QRCodeModule, RouterModule.forChild(basketRoute)],
   declarations: [BasketComponent, BasketDetailComponent, BasketUpdateComponent, BasketDeleteDialogComponent],
   entryComponents: [BasketDeleteDialogComponent]
 })

@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link DelivererResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class DelivererResourceIT {
@@ -71,7 +70,6 @@ public class DelivererResourceIT {
     @Transactional
     public void createDeliverer() throws Exception {
         int databaseSizeBeforeCreate = delivererRepository.findAll().size();
-
         // Create the Deliverer
         restDelivererMockMvc.perform(post("/api/deliverers")
             .contentType(MediaType.APPLICATION_JSON)
@@ -129,7 +127,6 @@ public class DelivererResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(deliverer.getId().intValue()));
     }
-
     @Test
     @Transactional
     public void getNonExistingDeliverer() throws Exception {
@@ -166,8 +163,6 @@ public class DelivererResourceIT {
     @Transactional
     public void updateNonExistingDeliverer() throws Exception {
         int databaseSizeBeforeUpdate = delivererRepository.findAll().size();
-
-        // Create the Deliverer
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restDelivererMockMvc.perform(put("/api/deliverers")

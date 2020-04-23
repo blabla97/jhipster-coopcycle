@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { CoopcycleSharedModule } from 'app/shared/shared.module';
 import { RestaurantOwnerComponent } from './restaurant-owner.component';
@@ -9,7 +10,7 @@ import { RestaurantOwnerDeleteDialogComponent } from './restaurant-owner-delete-
 import { restaurantOwnerRoute } from './restaurant-owner.route';
 
 @NgModule({
-  imports: [CoopcycleSharedModule, RouterModule.forChild(restaurantOwnerRoute)],
+  imports: [CoopcycleSharedModule, QRCodeModule, RouterModule.forChild(restaurantOwnerRoute)],
   declarations: [
     RestaurantOwnerComponent,
     RestaurantOwnerDetailComponent,

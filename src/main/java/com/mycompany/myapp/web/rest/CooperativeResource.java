@@ -114,7 +114,8 @@ public class CooperativeResource {
     @DeleteMapping("/cooperatives/{id}")
     public ResponseEntity<Void> deleteCooperative(@PathVariable Long id) {
         log.debug("REST request to delete Cooperative : {}", id);
+
         cooperativeRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { CoopcycleSharedModule } from 'app/shared/shared.module';
 import { CooperativeComponent } from './cooperative.component';
@@ -9,7 +10,7 @@ import { CooperativeDeleteDialogComponent } from './cooperative-delete-dialog.co
 import { cooperativeRoute } from './cooperative.route';
 
 @NgModule({
-  imports: [CoopcycleSharedModule, RouterModule.forChild(cooperativeRoute)],
+  imports: [CoopcycleSharedModule, QRCodeModule, RouterModule.forChild(cooperativeRoute)],
   declarations: [CooperativeComponent, CooperativeDetailComponent, CooperativeUpdateComponent, CooperativeDeleteDialogComponent],
   entryComponents: [CooperativeDeleteDialogComponent]
 })

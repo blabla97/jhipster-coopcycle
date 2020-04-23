@@ -112,7 +112,8 @@ public class CustomerResource {
     @DeleteMapping("/customers/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
         log.debug("REST request to delete Customer : {}", id);
+
         customerRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

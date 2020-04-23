@@ -38,7 +38,7 @@ public class Cooperative implements Serializable {
     private String area;
 
     @ManyToOne
-    @JsonIgnoreProperties("cooperatives")
+    @JsonIgnoreProperties(value = "cooperatives", allowSetters = true)
     private UserAccount dg;
 
     @ManyToMany
@@ -55,7 +55,7 @@ public class Cooperative implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "cooperatives_id", referencedColumnName = "id"))
     private Set<UserAccount> cooperatives = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -152,7 +152,7 @@ public class Cooperative implements Serializable {
     public void setCooperatives(Set<UserAccount> userAccounts) {
         this.cooperatives = userAccounts;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

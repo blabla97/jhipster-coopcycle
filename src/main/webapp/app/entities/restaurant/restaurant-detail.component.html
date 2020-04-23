@@ -31,7 +31,12 @@
                     </div>
                 </dd>
             </dl>
-
+            <dt>QrCode</dt>
+                <dd>
+                    <div>
+                        <qr-code [value]="'/restaurant/restaurant.id/view'" [size]="150"></qr-code>
+                    </div>
+                </dd>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">

@@ -91,7 +91,6 @@ public class NotificationResourceIT {
     @Transactional
     public void createNotification() throws Exception {
         int databaseSizeBeforeCreate = notificationRepository.findAll().size();
-
         // Create the Notification
         restNotificationMockMvc.perform(post("/api/notifications")
             .contentType(MediaType.APPLICATION_JSON)
@@ -141,7 +140,6 @@ public class NotificationResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllNotificationsWithEagerRelationshipsIsEnabled() throws Exception {
-        NotificationResource notificationResource = new NotificationResource(notificationRepositoryMock);
         when(notificationRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restNotificationMockMvc.perform(get("/api/notifications?eagerload=true"))
@@ -152,7 +150,6 @@ public class NotificationResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllNotificationsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        NotificationResource notificationResource = new NotificationResource(notificationRepositoryMock);
         when(notificationRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restNotificationMockMvc.perform(get("/api/notifications?eagerload=true"))
@@ -174,7 +171,6 @@ public class NotificationResourceIT {
             .andExpect(jsonPath("$.id").value(notification.getId().intValue()))
             .andExpect(jsonPath("$.date").value(sameInstant(DEFAULT_DATE)));
     }
-
     @Test
     @Transactional
     public void getNonExistingNotification() throws Exception {
@@ -214,8 +210,6 @@ public class NotificationResourceIT {
     @Transactional
     public void updateNonExistingNotification() throws Exception {
         int databaseSizeBeforeUpdate = notificationRepository.findAll().size();
-
-        // Create the Notification
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restNotificationMockMvc.perform(put("/api/notifications")

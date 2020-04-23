@@ -48,7 +48,7 @@ public class Product implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("products")
+    @JsonIgnoreProperties(value = "products", allowSetters = true)
     private Restaurant products;
 
     @ManyToMany
@@ -59,7 +59,7 @@ public class Product implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "baskets_id", referencedColumnName = "id"))
     private Set<Basket> baskets = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -157,7 +157,7 @@ public class Product implements Serializable {
     public void setBaskets(Set<Basket> baskets) {
         this.baskets = baskets;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

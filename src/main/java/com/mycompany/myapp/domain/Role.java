@@ -30,7 +30,7 @@ public class Role implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties("roles")
+    @JsonIgnoreProperties(value = "roles", allowSetters = true)
     private UserAccount userroles;
 
     @ManyToMany(mappedBy = "notifications")
@@ -38,7 +38,7 @@ public class Role implements Serializable {
     @JsonIgnore
     private Set<Notification> roles = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -84,7 +84,7 @@ public class Role implements Serializable {
     public void setRoles(Set<Notification> notifications) {
         this.roles = notifications;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

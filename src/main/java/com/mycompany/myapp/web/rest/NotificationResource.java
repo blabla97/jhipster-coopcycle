@@ -113,7 +113,8 @@ public class NotificationResource {
     @DeleteMapping("/notifications/{id}")
     public ResponseEntity<Void> deleteNotification(@PathVariable Long id) {
         log.debug("REST request to delete Notification : {}", id);
+
         notificationRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

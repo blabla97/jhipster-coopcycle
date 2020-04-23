@@ -112,7 +112,8 @@ public class RestaurantOwnerResource {
     @DeleteMapping("/restaurant-owners/{id}")
     public ResponseEntity<Void> deleteRestaurantOwner(@PathVariable Long id) {
         log.debug("REST request to delete RestaurantOwner : {}", id);
+
         restaurantOwnerRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

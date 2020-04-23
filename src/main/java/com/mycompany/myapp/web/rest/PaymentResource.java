@@ -122,7 +122,8 @@ public class PaymentResource {
     @DeleteMapping("/payments/{id}")
     public ResponseEntity<Void> deletePayment(@PathVariable Long id) {
         log.debug("REST request to delete Payment : {}", id);
+
         paymentRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

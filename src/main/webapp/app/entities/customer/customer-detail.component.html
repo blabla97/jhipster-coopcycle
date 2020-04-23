@@ -9,7 +9,12 @@
 
             <dl class="row-md jh-entity-details">
             </dl>
-
+            <dt>QrCode</dt>
+                <dd>
+                    <div>
+                        <qr-code [value]="'/customer/customer.id/view'" [size]="150"></qr-code>
+                    </div>
+                </dd>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">

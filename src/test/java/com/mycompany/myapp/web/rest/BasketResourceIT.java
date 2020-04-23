@@ -31,7 +31,6 @@ import com.mycompany.myapp.domain.enumeration.BasketState;
  * Integration tests for the {@link BasketResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class BasketResourceIT {
@@ -92,7 +91,6 @@ public class BasketResourceIT {
     @Transactional
     public void createBasket() throws Exception {
         int databaseSizeBeforeCreate = basketRepository.findAll().size();
-
         // Create the Basket
         restBasketMockMvc.perform(post("/api/baskets")
             .contentType(MediaType.APPLICATION_JSON)
@@ -137,6 +135,7 @@ public class BasketResourceIT {
 
         // Create the Basket, which fails.
 
+
         restBasketMockMvc.perform(post("/api/baskets")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(basket)))
@@ -154,6 +153,7 @@ public class BasketResourceIT {
         basket.setDeliveryAddress(null);
 
         // Create the Basket, which fails.
+
 
         restBasketMockMvc.perform(post("/api/baskets")
             .contentType(MediaType.APPLICATION_JSON)
@@ -195,7 +195,6 @@ public class BasketResourceIT {
             .andExpect(jsonPath("$.expectedDeliveryTime").value(sameInstant(DEFAULT_EXPECTED_DELIVERY_TIME)))
             .andExpect(jsonPath("$.deliveryAddress").value(DEFAULT_DELIVERY_ADDRESS));
     }
-
     @Test
     @Transactional
     public void getNonExistingBasket() throws Exception {
@@ -239,8 +238,6 @@ public class BasketResourceIT {
     @Transactional
     public void updateNonExistingBasket() throws Exception {
         int databaseSizeBeforeUpdate = basketRepository.findAll().size();
-
-        // Create the Basket
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restBasketMockMvc.perform(put("/api/baskets")

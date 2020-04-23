@@ -91,7 +91,6 @@ public class CooperativeResourceIT {
     @Transactional
     public void createCooperative() throws Exception {
         int databaseSizeBeforeCreate = cooperativeRepository.findAll().size();
-
         // Create the Cooperative
         restCooperativeMockMvc.perform(post("/api/cooperatives")
             .contentType(MediaType.APPLICATION_JSON)
@@ -135,6 +134,7 @@ public class CooperativeResourceIT {
 
         // Create the Cooperative, which fails.
 
+
         restCooperativeMockMvc.perform(post("/api/cooperatives")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(cooperative)))
@@ -152,6 +152,7 @@ public class CooperativeResourceIT {
         cooperative.setArea(null);
 
         // Create the Cooperative, which fails.
+
 
         restCooperativeMockMvc.perform(post("/api/cooperatives")
             .contentType(MediaType.APPLICATION_JSON)
@@ -179,7 +180,6 @@ public class CooperativeResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllCooperativesWithEagerRelationshipsIsEnabled() throws Exception {
-        CooperativeResource cooperativeResource = new CooperativeResource(cooperativeRepositoryMock);
         when(cooperativeRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restCooperativeMockMvc.perform(get("/api/cooperatives?eagerload=true"))
@@ -190,7 +190,6 @@ public class CooperativeResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllCooperativesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        CooperativeResource cooperativeResource = new CooperativeResource(cooperativeRepositoryMock);
         when(cooperativeRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restCooperativeMockMvc.perform(get("/api/cooperatives?eagerload=true"))
@@ -213,7 +212,6 @@ public class CooperativeResourceIT {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.area").value(DEFAULT_AREA));
     }
-
     @Test
     @Transactional
     public void getNonExistingCooperative() throws Exception {
@@ -255,8 +253,6 @@ public class CooperativeResourceIT {
     @Transactional
     public void updateNonExistingCooperative() throws Exception {
         int databaseSizeBeforeUpdate = cooperativeRepository.findAll().size();
-
-        // Create the Cooperative
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCooperativeMockMvc.perform(put("/api/cooperatives")

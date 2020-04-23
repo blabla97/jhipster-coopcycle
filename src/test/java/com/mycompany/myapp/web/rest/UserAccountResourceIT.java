@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link UserAccountResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class UserAccountResourceIT {
@@ -101,7 +100,6 @@ public class UserAccountResourceIT {
     @Transactional
     public void createUserAccount() throws Exception {
         int databaseSizeBeforeCreate = userAccountRepository.findAll().size();
-
         // Create the UserAccount
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
@@ -149,6 +147,7 @@ public class UserAccountResourceIT {
 
         // Create the UserAccount, which fails.
 
+
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(userAccount)))
@@ -166,6 +165,7 @@ public class UserAccountResourceIT {
         userAccount.setSurname(null);
 
         // Create the UserAccount, which fails.
+
 
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
@@ -185,6 +185,7 @@ public class UserAccountResourceIT {
 
         // Create the UserAccount, which fails.
 
+
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(userAccount)))
@@ -202,6 +203,7 @@ public class UserAccountResourceIT {
         userAccount.setPassword(null);
 
         // Create the UserAccount, which fails.
+
 
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
@@ -221,6 +223,7 @@ public class UserAccountResourceIT {
 
         // Create the UserAccount, which fails.
 
+
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(userAccount)))
@@ -238,6 +241,7 @@ public class UserAccountResourceIT {
         userAccount.setPhone(null);
 
         // Create the UserAccount, which fails.
+
 
         restUserAccountMockMvc.perform(post("/api/user-accounts")
             .contentType(MediaType.APPLICATION_JSON)
@@ -285,7 +289,6 @@ public class UserAccountResourceIT {
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE));
     }
-
     @Test
     @Transactional
     public void getNonExistingUserAccount() throws Exception {
@@ -335,8 +338,6 @@ public class UserAccountResourceIT {
     @Transactional
     public void updateNonExistingUserAccount() throws Exception {
         int databaseSizeBeforeUpdate = userAccountRepository.findAll().size();
-
-        // Create the UserAccount
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restUserAccountMockMvc.perform(put("/api/user-accounts")

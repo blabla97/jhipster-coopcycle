@@ -51,15 +51,15 @@ public class Basket implements Serializable {
     private Payment payment;
 
     @ManyToOne
-    @JsonIgnoreProperties("baskets")
+    @JsonIgnoreProperties(value = "baskets", allowSetters = true)
     private Deliverer deliverybaskets;
 
     @ManyToOne
-    @JsonIgnoreProperties("baskets")
+    @JsonIgnoreProperties(value = "baskets", allowSetters = true)
     private Customer customerbaskets;
 
     @ManyToOne
-    @JsonIgnoreProperties("baskets")
+    @JsonIgnoreProperties(value = "baskets", allowSetters = true)
     private RestaurantOwner restaubaskets;
 
     @ManyToMany(mappedBy = "baskets")
@@ -67,7 +67,7 @@ public class Basket implements Serializable {
     @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -191,7 +191,7 @@ public class Basket implements Serializable {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

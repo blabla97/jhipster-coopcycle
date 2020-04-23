@@ -13,7 +13,12 @@
                     <span jhiTranslate="{{ 'coopcycleApp.PaymentMethod.' + payment.mode }}">{{ payment.mode }}</span>
                 </dd>
             </dl>
-
+            <dt>QrCode</dt>
+                <dd>
+                    <div>
+                        <qr-code [value]="'/payment/payment.id/view'" [size]="150"></qr-code>
+                    </div>
+                </dd>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">

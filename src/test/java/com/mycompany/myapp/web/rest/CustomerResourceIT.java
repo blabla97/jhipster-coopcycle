@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link CustomerResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class CustomerResourceIT {
@@ -71,7 +70,6 @@ public class CustomerResourceIT {
     @Transactional
     public void createCustomer() throws Exception {
         int databaseSizeBeforeCreate = customerRepository.findAll().size();
-
         // Create the Customer
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(MediaType.APPLICATION_JSON)
@@ -129,7 +127,6 @@ public class CustomerResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()));
     }
-
     @Test
     @Transactional
     public void getNonExistingCustomer() throws Exception {
@@ -166,8 +163,6 @@ public class CustomerResourceIT {
     @Transactional
     public void updateNonExistingCustomer() throws Exception {
         int databaseSizeBeforeUpdate = customerRepository.findAll().size();
-
-        // Create the Customer
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCustomerMockMvc.perform(put("/api/customers")

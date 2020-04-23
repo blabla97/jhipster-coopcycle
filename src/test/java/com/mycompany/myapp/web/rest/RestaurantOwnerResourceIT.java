@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link RestaurantOwnerResource} REST controller.
  */
 @SpringBootTest(classes = CoopcycleApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class RestaurantOwnerResourceIT {
@@ -71,7 +70,6 @@ public class RestaurantOwnerResourceIT {
     @Transactional
     public void createRestaurantOwner() throws Exception {
         int databaseSizeBeforeCreate = restaurantOwnerRepository.findAll().size();
-
         // Create the RestaurantOwner
         restRestaurantOwnerMockMvc.perform(post("/api/restaurant-owners")
             .contentType(MediaType.APPLICATION_JSON)
@@ -129,7 +127,6 @@ public class RestaurantOwnerResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(restaurantOwner.getId().intValue()));
     }
-
     @Test
     @Transactional
     public void getNonExistingRestaurantOwner() throws Exception {
@@ -166,8 +163,6 @@ public class RestaurantOwnerResourceIT {
     @Transactional
     public void updateNonExistingRestaurantOwner() throws Exception {
         int databaseSizeBeforeUpdate = restaurantOwnerRepository.findAll().size();
-
-        // Create the RestaurantOwner
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restRestaurantOwnerMockMvc.perform(put("/api/restaurant-owners")

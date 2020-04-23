@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { CoopcycleSharedModule } from 'app/shared/shared.module';
 import { NotificationComponent } from './notification.component';
@@ -9,7 +10,7 @@ import { NotificationDeleteDialogComponent } from './notification-delete-dialog.
 import { notificationRoute } from './notification.route';
 
 @NgModule({
-  imports: [CoopcycleSharedModule, RouterModule.forChild(notificationRoute)],
+  imports: [CoopcycleSharedModule, QRCodeModule, RouterModule.forChild(notificationRoute)],
   declarations: [NotificationComponent, NotificationDetailComponent, NotificationUpdateComponent, NotificationDeleteDialogComponent],
   entryComponents: [NotificationDeleteDialogComponent]
 })

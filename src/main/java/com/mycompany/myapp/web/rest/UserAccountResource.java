@@ -113,7 +113,8 @@ public class UserAccountResource {
     @DeleteMapping("/user-accounts/{id}")
     public ResponseEntity<Void> deleteUserAccount(@PathVariable Long id) {
         log.debug("REST request to delete UserAccount : {}", id);
+
         userAccountRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }
